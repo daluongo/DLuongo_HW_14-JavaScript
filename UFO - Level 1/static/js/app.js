@@ -15,24 +15,7 @@ data.forEach(function(ufoSightings) {
     console.log(ufoSightings);
 });
 
-
-// data.forEach(function(weatherReport) {
-//     console.log(weatherReport);
-//   });
-
-// Step 2:  Use d3 to append one table row `tr` for each object
-// Don't worry about adding cells or text yet, just try appending the `tr` elements.
-
-
-// Step 3:  Use `Object.entries` to console.log each object value
-
-// Step 4: Use d3 to append 1 cell per ufo sighting value (weekday, date, high, low)
-
-// Step 5: Use d3 to update each cell's text with
-// weather report values (weekday, date, high, low)
-
-
-data.forEach((ufoSightings) => {
+var originalTable = data.forEach((ufoSightings) => {
     var row = tbody.append("tr");
     Object.entries(ufoSightings).forEach(([key, value]) => {
       var cell = row.append("td");
@@ -43,16 +26,24 @@ data.forEach((ufoSightings) => {
 
 
   // Select the button
-// var button = d3.select("#filter-btn");
+var button = d3.select("#filter-btn");
 
-// button.on("click", function() {
+button.on("click", function() {
     
-//     var inputElement = d3.select("#datetime");
+    var inputElement = d3.select("#datetime");
 
-//     var inputValue = inputElement.property("value");
+    var inputValue = inputElement.property("value");
 
-//     console.log(inputValue);
-// })
+    function filterDate(d) {
+      return d.datetime == inputValue
+    }
+    var results = tableData.filter(filterDate)
+  
+
+
+
+    console.log(results);
+})
 
 
 
