@@ -2,20 +2,10 @@
 var tableData = data;
 
 // Get a reference to the table body
-
 var tbody = d3.select("tbody");
 
-// // Console.log the weather data from data.js
-
-console.log(tableData);
-
-// Step 1: Loop Through `data` and console.log each object
-
-data.forEach(function(ufoSightings) {
-    console.log(ufoSightings);
-});
-
-var originalTable = data.forEach((ufoSightings) => {
+//Create initial table, reading in all data
+data.forEach((ufoSightings) => {
     var row = tbody.append("tr");
     Object.entries(ufoSightings).forEach(([key, value]) => {
       var cell = row.append("td");
@@ -38,9 +28,6 @@ button.on("click", function() {
       return d.datetime == inputValue
     }
     var results = tableData.filter(filterDate)
-  
-
-
 
     console.log(results);
 })
