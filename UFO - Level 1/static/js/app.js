@@ -5,36 +5,30 @@ var tableData = data;
 var tbody = d3.select("tbody");
 
 //Create initial table, reading in all data
-data.forEach((ufoSightings) => {
+function initialTable(data) {
+  tbody.html("");
+  data.forEach((ufoSightings) => {
     var row = tbody.append("tr");
     Object.entries(ufoSightings).forEach(([key, value]) => {
       var cell = row.append("td");
       cell.text(value);
     });
   });
+};
 
+// Create a function to filter by user input 
+function filterUFO(){
+  let filtered = tableData
+  var inputUser = d3.select("#datetime").property("value");
+  if (inputUser) {
+      filtered = tableData.filter(ufoInfo => ufoInfo.datetime === inputUser)};
+  console.log(filtered)
+  initialTable(filtered)
+};
 
-
-  // Select the button
+// Locate button and create event listener
 var button = d3.select("#filter-btn");
+button.on("click", filterUFO);
 
-button.on("click", function() {
-    
-    var inputElement = d3.select("#datetime");
+initialTable(tableData)
 
-    var inputValue = inputElement.property("value");
-
-    function filterDate(d) {
-      return d.datetime == inputValue
-    }
-    var results = tableData.filter(filterDate)
-
-    console.log(results);
-})
-
-
-
-  // Set the span tag in the h1 element to the text
-  // that was entered in the form
-//   d3.select("h1>span").text(inputValue);
-// });
